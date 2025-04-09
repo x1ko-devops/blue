@@ -1,0 +1,40 @@
+#-------------------------------------
+# GitHub Action Blue Repo
+#
+# David Ogandzhanyan 2025
+#-------------------------------------
+name: My-GitHub-Actions
+env:
+  NAME      : David
+  SURNAME   : Ogandzhanyan
+  SIGNATURE : DAV-0PS(c)
+
+
+on:
+  push: 
+    branches: 
+      - main
+
+jobs:
+  my_first_job:
+    runs-on: ubuntu-latest
+
+    steps :
+    - name: Print hello message
+      run : echo "Hello World! I am Blue repository ;)"
+    
+    - name: Print name and surname
+      run : |
+        echo "My name is ${{ env.NAME }}"
+        echo "My surname is ${{ env.SURNAME }}"
+
+  my_second_job:
+    runs-on: ubuntu-latest
+    needs  : [my_first_job]
+
+    steps :
+    - name: Show date
+      run : |
+        echo "Actual date is:"
+        date
+        echo "Dev by: ${{ env.SIGNATURE}}"
